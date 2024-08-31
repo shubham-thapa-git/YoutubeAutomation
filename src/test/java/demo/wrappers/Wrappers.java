@@ -14,4 +14,24 @@ public class Wrappers {
     /*
      * Write your selenium wrappers here
      */
+
+     
+
+     public WebElement findRightArrow(String title,WebDriver driver){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        WebElement rightArrow = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@id='title' and text()=\""+title+"\"]//ancestor::div[@id='dismissible']//child::div[@id='right-arrow']//button[@aria-label='Next']")));
+        
+        
+        if(rightArrow.isDisplayed()){
+            return rightArrow;
+        }
+        else{
+            return null;
+        }
+    }
+
+    public void search(WebElement searchBar,WebElement searchButton,String text, WebDriver driver){
+        searchBar.sendKeys(text);
+        searchButton.click();
+    }
 }
